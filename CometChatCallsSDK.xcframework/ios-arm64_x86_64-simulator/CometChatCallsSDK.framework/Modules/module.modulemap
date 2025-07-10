@@ -1,0 +1,6 @@
+framework module CometChatCallsSDK {
+  umbrella header "CometChatCallsSDK.h"
+  export *
+
+  module * { export * }
+}

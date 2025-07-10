@@ -1,0 +1,789 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios15.1 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name CometChatCallsSDK
+@_exported import CometChatCallsSDK
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_inheritsConvenienceInitializers @objc public class CallSession : ObjectiveC.NSObject {
+  @objc weak public var sessionStatusListener: (any CometChatCallsSDK.SessionStatusListener)?
+  @objc weak public var participantEventsListener: (any CometChatCallsSDK.ParticipantEventListener)?
+  @objc weak public var mediaEventsListener: (any CometChatCallsSDK.MediaEventsListener)?
+  @objc weak public var buttonClickListener: (any CometChatCallsSDK.ButtonClickListener)?
+  @objc public static let shared: CometChatCallsSDK.CallSession
+  @objc override dynamic public init()
+  @objc deinit
+  @objc public func isCallSessionActive() -> Swift.Bool
+  @objc public func muteAudio()
+  @objc public func unMuteAudio()
+  @objc public func pauseVideo()
+  @objc public func resumeVideo()
+  @objc public func enablePictureInPictureLayout()
+  @objc public func disablePictureInPictureLayout()
+  @objc public func leaveSession()
+  @objc public func raiseHand()
+  @objc public func lowerHand()
+  @objc public func muteParticipant(participantId: Swift.String)
+  @objc public func pauseParticipantVideo(participantId: Swift.String)
+  @objc public func pinParticipant()
+  @objc public func unPinParticipant()
+  @objc public func setAudioMode(_ mode: Swift.String)
+  @objc public func setLayout(_ layoutType: Swift.String)
+  @objc public func switchCamera()
+  @objc public func hideSettingsPanel()
+  @objc public func startRecording()
+  @objc public func stopRecording()
+}
+extension CometChatCallsSDK.CallSession {
+  public func removeObserver()
+}
+@objc public protocol CustomError {
+  @objc var errorDescription: Swift.String { get }
+  @objc var errorCode: Swift.String { get }
+}
+@objc public class CometChatCallException : ObjectiveC.NSObject, CometChatCallsSDK.CustomError {
+  @objc public var errorDescription: Swift.String
+  @objc public var errorCode: Swift.String
+  public init(errorCode: Swift.String, errorDescription: Swift.String)
+  @objc deinit
+}
+@objc public protocol ButtonClickListener {
+  @objc optional func onLeaveSessionButtonClicked()
+  @objc optional func onRaiseHandButtonClicked()
+  @objc optional func onChangeLayoutButtonClicked()
+  @objc optional func onParticipantListButtonClicked()
+  @objc optional func onToggleAudioButtonClicked()
+  @objc optional func onToggleVideoButtonClicked()
+  @objc optional func onSwitchCameraButtonClicked()
+  @objc optional func onRecordingToggleButtonClicked()
+}
+@objc public protocol SessionStatusListener {
+  @objc optional func onConnectionLost()
+  @objc optional func onConnectionRestored()
+  @objc optional func onConnectionClosed()
+  @objc optional func onSessionJoined()
+  @objc optional func onSessionLeft()
+}
+@objc @_inheritsConvenienceInitializers public class CometChatEventID : ObjectiveC.NSObject {
+  public static let onConnectionLost: Swift.String
+  public static let onConnectionRestored: Swift.String
+  public static let onSessionJoined: Swift.String
+  public static let onSessionLeft: Swift.String
+  public static let onParticipantListChanged: Swift.String
+  public static let onParticipantJoined: Swift.String
+  public static let onParticipantLeft: Swift.String
+  public static let onParticipantAudioMuted: Swift.String
+  public static let onParticipantAudioUnmuted: Swift.String
+  public static let onParticipantVideoPaused: Swift.String
+  public static let onParticipantVideoUnPaused: Swift.String
+  public static let onParticipantHandRaised: Swift.String
+  public static let onParticipantHandLowered: Swift.String
+  public static let onParticipantStartedScreenSharing: Swift.String
+  public static let onParticipantStoppedScreenSharing: Swift.String
+  public static let onParticipantStartedRecording: Swift.String
+  public static let onParticipantStoppedRecording: Swift.String
+  public static let onRecordingStarted: Swift.String
+  public static let onRecordingStopped: Swift.String
+  public static let onAudioModeChanged: Swift.String
+  public static let onVideoSourceChanged: Swift.String
+  public static let onAudioMuted: Swift.String
+  public static let onAudioUnMuted: Swift.String
+  public static let onVideoPaused: Swift.String
+  public static let onVideoUnPaused: Swift.String
+  public static let onEndCallButtonClicked: Swift.String
+  public static let onRaiseHandButtonClicked: Swift.String
+  public static let onChangeLayoutButtonClicked: Swift.String
+  public static let onParticipantListButtonClicked: Swift.String
+  public static let onMuteAudioButtonClicked: Swift.String
+  public static let onPauseVideoButtonClicked: Swift.String
+  public static let onCameraSourceToggleButtonClicked: Swift.String
+  public static let onRecordingToggleButtonClicked: Swift.String
+  public static let onCameraFacingChanged: Swift.String
+  public static let onToggleAudioButtonClicked: Swift.String
+  public static let onToggleVideoButtonClicked: Swift.String
+  public static let onLeaveSessionButtonClicked: Swift.String
+  public static let onVideoResumed: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol ParticipantEventListener {
+  @objc optional func onParticipantListChanged(participants: [CometChatCallsSDK.Participant])
+  @objc optional func onParticipantJoined(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantLeft(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantAudioMuted(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantAudioUnmuted(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantVideoPaused(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantVideoResumed(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantHandRaised(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantHandLowered(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantScreenShareStarted(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantScreenShareStopped(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantStartedRecording(participant: CometChatCallsSDK.Participant)
+  @objc optional func onParticipantStoppedRecording(participant: CometChatCallsSDK.Participant)
+  @objc optional func onDominantSpeakerChanged(participant: CometChatCallsSDK.Participant)
+}
+@_inheritsConvenienceInitializers @objc public class CallLog : ObjectiveC.NSObject {
+  public var sessionID: Swift.String
+  public var totalAudioMinutes: Swift.Double
+  public var totalVideoMinutes: Swift.Double
+  public var totalDuration: Swift.String
+  public var hasRecording: Swift.Bool
+  public var initiatedAt: Swift.Int
+  public var mode: CometChatCallsSDK.CallCategory
+  public var status: CometChatCallsSDK.CallStatus
+  public var totalDurationInMinutes: Swift.Double
+  public var totalParticipants: Swift.Int
+  public var type: CometChatCallsSDK.CallType
+  public var mid: Swift.String
+  public var startedAt: Swift.Int?
+  public var endedAt: Swift.Int?
+  public var participants: [CometChatCallsSDK.Participant]
+  public var recordings: [CometChatCallsSDK.Recording]
+  public var receiverType: CometChatCallsSDK.CallEntityType
+  public var initiator: CometChatCallsSDK.CallEntity
+  public var receiver: CometChatCallsSDK.CallEntity
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class Participant : ObjectiveC.NSObject, Swift.Codable {
+  public var uid: Swift.String?
+  public var totalAudioMinutes: Swift.Double?, totalVideoMinutes: Swift.Double?, totalDurationInMinutes: Swift.Double?
+  public var deviceID: Swift.String?
+  public var isJoined: Swift.Bool?
+  public var joinedAt: Swift.Int?
+  public var mid: Swift.String?
+  public var state: Swift.String?
+  public var leftAt: Swift.Int?
+  public var name: Swift.String?
+  public var avatar: Swift.String?
+  @objc override dynamic public init()
+  @objc public static func fromDictionary(_ dictionary: Foundation.NSDictionary) -> CometChatCallsSDK.Participant
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc public class Recording : ObjectiveC.NSObject, Swift.Codable {
+  final public let duration: Swift.Double?
+  final public let endTime: Swift.Int?
+  final public let recordingURL: Swift.String?
+  final public let rid: Swift.String?
+  final public let startTime: Swift.Int?
+  public static func fromJsonObj(dataArray: [[Swift.String : Any]]) -> ([CometChatCallsSDK.Recording]?, CometChatCallsSDK.CometChatCallException?)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public typealias AnimationCompletion = (Swift.Bool) -> Swift.Void
+public protocol PiPViewCoordinatorDelegate : AnyObject {
+  func exitPictureInPicture()
+}
+public class PiPViewCoordinator {
+  public enum Position {
+    case lowerRightCorner
+    case upperRightCorner
+    case lowerLeftCorner
+    case upperLeftCorner
+    public static func == (a: CometChatCallsSDK.PiPViewCoordinator.Position, b: CometChatCallsSDK.PiPViewCoordinator.Position) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var dragBoundInsets: UIKit.UIEdgeInsets {
+    get
+    set
+  }
+  public var initialPositionInSuperView: CometChatCallsSDK.PiPViewCoordinator.Position
+  @available(*, deprecated, message: "The PiP window size is now fixed to 150px.")
+  public var c: CoreFoundation.CGFloat
+  weak public var delegate: (any CometChatCallsSDK.PiPViewCoordinatorDelegate)?
+  public init(withView view: UIKit.UIView)
+  public func configureAsStickyView(withParentView parentView: UIKit.UIView? = nil)
+  public func show(completion: CometChatCallsSDK.AnimationCompletion? = nil)
+  public func hide(completion: CometChatCallsSDK.AnimationCompletion? = nil)
+  public func enterPictureInPicture()
+  @objc public func exitPictureInPicture()
+  public func resetBounds(bounds: CoreFoundation.CGRect)
+  public func stopDragGesture()
+  open func configureExitPiPButton(target: Any, action: ObjectiveC.Selector) -> UIKit.UIButton
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class CallEntity : ObjectiveC.NSObject {
+  public var name: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class CallUser : CometChatCallsSDK.CallEntity {
+  public var avatar: Swift.String?
+  public var uid: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class CallGroup : CometChatCallsSDK.CallEntity {
+  public var icon: Swift.String?
+  public var guid: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class CallSettingsBuilder : ObjectiveC.NSObject {
+  @_inheritsConvenienceInitializers @objc public class CallSettings : ObjectiveC.NSObject {
+    @objc public var initialCameraFacing: CometChatCallsSDK.CameraFacing
+    @objc public var title: Swift.String?
+    @objc public var displayName: Swift.String?
+    @objc public var startVideoPaused: Swift.Bool
+    @objc public var startAudioMuted: Swift.Bool
+    @objc public var layout: CometChatCallsSDK.LayoutType
+    @objc public var idleTimeoutPeriod: Swift.Int
+    @objc public var audioMode: CometChatCallsSDK.AudioModeType
+    @objc public var type: CometChatCallsSDK.CallType
+    @objc public var lowBandwidthMode: Swift.Bool
+    @objc public var hideRaiseHandButton: Swift.Bool
+    @objc public var hideRecordingButton: Swift.Bool
+    @objc public var hideAudioModeButton: Swift.Bool
+    @objc public var hideSwitchCameraButton: Swift.Bool
+    @objc public var autoStartRecording: Swift.Bool
+    @objc public var hideControlPanel: Swift.Bool
+    @objc public var hideHeaderPanel: Swift.Bool
+    @objc public var hideLeaveSessionButton: Swift.Bool
+    @objc public var hideToggleAudioButton: Swift.Bool
+    @objc public var hideToggleVideoButton: Swift.Bool
+    @objc public var hideParticipantListButton: Swift.Bool
+    @objc public var hideSwitchLayoutButton: Swift.Bool
+    @objc public var hideChatButton: Swift.Bool
+    @objc public var hideConferenceTimer: Swift.Bool
+    @objc public func asProps() -> [Swift.String : Any]
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @objc public func setTitle(_ title: Swift.String) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func setDisplayName(_ name: Swift.String) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func startVideoPaused(_ muted: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func startAudioMuted(_ muted: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func setLayout(_ layoutType: CometChatCallsSDK.LayoutType) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func setIdleTimeoutPeriod(_ timeoutSeconds: Swift.Int) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func setAudioMode(_ audioMode: CometChatCallsSDK.AudioModeType) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func setType(_ type: CometChatCallsSDK.CallType) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func setInitialCameraFacing(_ initialCameraFacing: CometChatCallsSDK.CameraFacing) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func enableLowBandwidthMode(_ enabled: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideRaiseHandButton(_ enabled: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideRecordingButton(_ enabled: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideAudioModeButton(_ enabled: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideSwitchCameraButton(_ enabled: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func enableAutoStartRecording(_ enabled: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideControlPanel(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideHeaderPanel(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideLeaveSessionButton(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideToggleAudioButton(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideToggleVideoButton(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideParticipantListButton(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideSwitchLayoutButton(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideChatButton(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func hideConferenceTimer(_ hidden: Swift.Bool) -> CometChatCallsSDK.CallSettingsBuilder
+  @objc public func build() -> CometChatCallsSDK.CallSettingsBuilder.CallSettings
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension CometChatCallsSDK.CometChatCalls {
+  @objc public enum UserStatus : Swift.Int {
+    case online
+    case offline
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+}
+@objc final public class CometChatCalls : ObjectiveC.NSObject {
+  @objc public static let callSettingsBuilder: CometChatCallsSDK.CallSettingsBuilder
+  @objc public static let presentationSettingsBuilder: CometChatCallsSDK.PresentationSettingsBuilder
+  @discardableResult
+  @objc public init(callsAppSettings: CometChatCallsSDK.CallAppSettings, onSuccess: @escaping (Swift.String) -> (), onError: @escaping (CometChatCallsSDK.CometChatCallException?) -> ())
+  @objc public static func generateToken(sessionID: Swift.String, onSuccess: @escaping (_ token: Swift.String?) -> (), onError: @escaping (CometChatCallsSDK.CometChatCallException?) -> ())
+  @objc public static func joinSession(callToken: Swift.String, callSetting: CometChatCallsSDK.CallSettingsBuilder.CallSettings, container: UIKit.UIView, onSuccess: @escaping (Swift.String) -> (), onError: @escaping (CometChatCallsSDK.CometChatCallException?) -> ())
+  @objc public static func joinSession(sessionID: Swift.String, callSetting: CometChatCallsSDK.CallSettingsBuilder.CallSettings, container: UIKit.UIView, onSuccess: @escaping (Swift.String) -> (), onError: @escaping (CometChatCallsSDK.CometChatCallException?) -> ())
+  @objc deinit
+}
+extension CometChatCallsSDK.CometChatCalls {
+  @objc public static func setSource(resource: Swift.String, platform: Swift.String, language: Swift.String, version: Swift.String? = nil)
+}
+@objc public protocol CometChatLoginDelegate {
+  @objc optional func onLoginSuccess(user: CometChatCallsSDK.User)
+  @objc optional func onLoginFailed(error: CometChatCallsSDK.CometChatCallException?)
+  @objc optional func onLogoutSuccess()
+  @objc optional func onLogoutFailed(error: CometChatCallsSDK.CometChatCallException?)
+}
+extension CometChatCallsSDK.CometChatCalls {
+  weak public static var loginDelegate: (any CometChatCallsSDK.CometChatLoginDelegate)?
+  @objc public static func addLoginListener(_ observerId: Swift.String, _ observer: any CometChatCallsSDK.CometChatLoginDelegate)
+  @objc public static func removeLoginListener(_ observerId: Swift.String)
+}
+@_inheritsConvenienceInitializers @objc(PresentationSettingsBuilder) public class PresentationSettingsBuilder : ObjectiveC.NSObject {
+  @objc public func setDefaultLayout(_ value: Swift.Bool) -> Self
+  @objc public func setIsAudioOnly(_ value: Swift.Bool) -> Self
+  @objc public func setIsPresenter(_ value: Swift.Bool) -> Self
+  @objc public func setEnableDraggableVideoTile(_ value: Swift.Bool) -> Self
+  @objc public func setEndCallButtonDisable(_ value: Swift.Bool) -> Self
+  @objc public func setShowRecordingButton(_ value: Swift.Bool) -> Self
+  @objc public func setSwitchCameraButtonDisable(_ value: Swift.Bool) -> Self
+  @objc public func setMuteAudioButtonDisable(_ value: Swift.Bool) -> Self
+  @objc public func setPauseVideoButtonDisable(_ value: Swift.Bool) -> Self
+  @objc public func setAudioModeButtonDisable(_ value: Swift.Bool) -> Self
+  @objc public func setStartAudioMuted(_ value: Swift.Bool) -> Self
+  @objc public func setStartVideoMuted(_ value: Swift.Bool) -> Self
+  @objc public func setDefaultAudioMode(_ value: Foundation.NSString) -> Self
+  @objc public func setVideoSettings(_ value: Foundation.NSMutableDictionary) -> Self
+  @objc public func setDelegate(_ value: any CometChatCallsSDK.CallsEventsDelegate) -> Self
+  @objc public func build() -> CometChatCallsSDK.PresentationSettings
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(CallSetting) public class CallSettings : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension CometChatCallsSDK.CallSettings {
+  @objc public enum Id : Swift.Int {
+    case CALLING_NATIVE_VIEW_ID
+    case METHOD_CHANNEL_NAME
+    case EVENT_CHANNEL_NAME
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public enum Position : Swift.Int {
+    case TOP_LEFT
+    case TOP_RIGHT
+    case BOTTOM_LEFT
+    case BOTTOM_RIGHT
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public enum AspectRatio : Swift.Int {
+    case DEFAULT
+    case CONTAIN
+    case COVER
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+}
+@objc final public class CallLogsRequest : ObjectiveC.NSObject {
+  @objc public init(builder: CometChatCallsSDK.CallLogsRequest.CallLogsBuilder)
+  @objc final public func fetchPrevious(authToken: Swift.String?, onSuccess: @escaping (([CometChatCallsSDK.CallLog]) -> Swift.Void), onError: @escaping (_ error: CometChatCallsSDK.CometChatCallException?) -> Swift.Void)
+  @objc final public func fetchNext(onSuccess: @escaping (([CometChatCallsSDK.CallLog]) -> Swift.Void), onError: @escaping (_ error: CometChatCallsSDK.CometChatCallException?) -> Swift.Void)
+  @_inheritsConvenienceInitializers @objc public class CallLogsBuilder : ObjectiveC.NSObject {
+    @discardableResult
+    @objc public func set(limit: Swift.Int) -> Self
+    @discardableResult
+    @objc public func set(callType: CometChatCallsSDK.CallType) -> Self
+    @discardableResult
+    @objc public func set(callStatus: CometChatCallsSDK.CallStatus) -> Self
+    @discardableResult
+    @objc public func set(hasRecording: Swift.Bool) -> Self
+    @discardableResult
+    @objc public func set(callCategory: CometChatCallsSDK.CallCategory) -> Self
+    @discardableResult
+    @objc public func set(callDirection: CometChatCallsSDK.CallDirection) -> Self
+    @discardableResult
+    @objc public func set(uid: Swift.String) -> Self
+    @discardableResult
+    @objc public func set(guid: Swift.String) -> Self
+    @discardableResult
+    @objc public func set(authToken: Swift.String?) -> Self
+    @discardableResult
+    @objc public func build() -> CometChatCallsSDK.CallLogsRequest
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @objc deinit
+}
+public enum HTTPMethod : Swift.String {
+  case get
+  case post
+  case put
+  case delete
+  case patch
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers final public class CallAppSettings : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers open class AppEntity : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension CometChatCallsSDK.CometChatCalls {
+  @objc public static func getLoggedInUser() -> CometChatCallsSDK.User?
+  @objc public static func login(UID: Swift.String, apiKey: Swift.String, onSuccess: @escaping (CometChatCallsSDK.User) -> Swift.Void, onError: @escaping (CometChatCallsSDK.CometChatCallException) -> Swift.Void)
+  @objc public static func login(UID: Swift.String, authKey: Swift.String, onSuccess: @escaping (CometChatCallsSDK.User) -> Swift.Void, onError: @escaping (CometChatCallsSDK.CometChatCallException) -> Swift.Void)
+  @objc public static func login(authToken: Swift.String, onSuccess: @escaping (CometChatCallsSDK.User) -> Swift.Void, onError: @escaping (CometChatCallsSDK.CometChatCallException) -> Swift.Void)
+  @objc public static func logout(onSuccess: @escaping (_ Response: Swift.String) -> Swift.Void, onError: @escaping (CometChatCallsSDK.CometChatCallException) -> Swift.Void)
+}
+extension CometChatCallsSDK.CometChatCalls {
+  @objc public static func getCallDetail(authToken: Swift.String?, sessionID: Swift.String, onSuccess: @escaping (([CometChatCallsSDK.CallLog]) -> Swift.Void), onError: @escaping ((CometChatCallsSDK.CometChatCallException?) -> Swift.Void))
+  @objc public static func getCallRecording(authToken: Swift.String?, sessionID: Swift.String, onSuccess: @escaping (([CometChatCallsSDK.Recording]) -> Swift.Void), onError: @escaping ((CometChatCallsSDK.CometChatCallException?) -> Swift.Void))
+  @objc public static func getOngoingCallDetails(authToken: Swift.String?, sessionID: Swift.String, onSuccess: @escaping ((CometChatCallsSDK.CallLog) -> Swift.Void), onError: @escaping ((CometChatCallsSDK.CometChatCallException?) -> Swift.Void))
+}
+@_inheritsConvenienceInitializers @objc(PresentationSettings) public class PresentationSettings : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol CallsEventsDelegate {
+  @objc optional func onSessionTimeout()
+  @objc optional func onCallEnded()
+  @objc optional func onCallEndButtonPressed()
+  @available(*, deprecated, message: "Use 'onUserJoined(rtcUser: RTCUser)' instead")
+  @objc optional func onUserJoined(user: Foundation.NSDictionary)
+  @objc optional func onUserJoined(rtcUser: CometChatCallsSDK.RTCUser)
+  @available(*, deprecated, message: "Use 'onUserLeft(rtcUser: RTCUser)' instead")
+  @objc optional func onUserLeft(user: Foundation.NSDictionary)
+  @objc optional func onUserLeft(rtcUser: CometChatCallsSDK.RTCUser)
+  @available(*, deprecated, message: "Use 'onUserListChanged(rtcUser: RTCUser)' instead")
+  @objc optional func onUserListChanged(userList: Foundation.NSArray)
+  @objc optional func onUserListChanged(rtcUsers: [CometChatCallsSDK.RTCUser])
+  @available(*, deprecated, message: "Use onAudioModeChanged(mode: [CallAudioMode]) instead")
+  @objc optional func onAudioModeChanged(audioModeList: Foundation.NSArray)
+  @objc optional func onAudioModeChanged(mode: [CometChatCallsSDK.CallAudioMode])
+  @available(*, deprecated, message: "Use 'onCallSwitchedToVideo(callSwitchedInfo: CallSwitchRequestInfo)' instead")
+  @objc optional func onCallSwitchedToVideo(info: Foundation.NSDictionary)
+  @objc optional func onCallSwitchedToVideo(callSwitchedInfo: CometChatCallsSDK.CallSwitchRequestInfo)
+  @available(*, deprecated, message: "Use 'onUserMuted(rtcMutedUser: RTCMutedUser)' instead")
+  @objc optional func onUserMuted(info: Foundation.NSDictionary)
+  @objc optional func onUserMuted(rtcMutedUser: CometChatCallsSDK.RTCMutedUser)
+  @available(*, deprecated, message: "Use 'onRecordingToggled(recordingInfo: RTCRecordingInfo)' instead")
+  @objc optional func onRecordingToggled(info: Foundation.NSDictionary)
+  @objc optional func onRecordingToggled(recordingInfo: CometChatCallsSDK.RTCRecordingInfo)
+}
+@objc @_inheritsConvenienceInitializers public class CallAppSettingsBuilder : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @discardableResult
+  @objc public func set(appID: Swift.String) -> Self
+  @discardableResult
+  @objc public func set(region: Swift.String) -> Self
+  @discardableResult
+  @objc public func set(authKey: Swift.String) -> Self
+  @discardableResult
+  @objc public func set(host: Swift.String?) -> Self
+  @discardableResult
+  @objc public func set(adminHost: Swift.String?) -> Self
+  @discardableResult
+  @objc public func set(clientHost: Swift.String?) -> Self
+  @objc public func build() -> CometChatCallsSDK.CallAppSettings
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class MainVideoContainerSetting : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  final public func getDictionaryForVideoSetting() -> Foundation.NSMutableDictionary
+  final public func setMainVideoAspectRatio(_ aspectRatio: CometChatCallsSDK.CallSettings.AspectRatio)
+  final public func setNameLabelParams(_ visibility: Swift.Bool, _ position: CometChatCallsSDK.CallSettings.Position?, _ backGroundColor: Swift.String?)
+  final public func setFullScreenButtonParams(_ visibility: Swift.Bool, _ position: CometChatCallsSDK.CallSettings.Position?)
+  final public func setZoomButtonParams(_ visibility: Swift.Bool, _ position: CometChatCallsSDK.CallSettings.Position?)
+  final public func setUserListButtonParams(_ visibility: Swift.Bool, _ position: CometChatCallsSDK.CallSettings.Position?)
+  @objc deinit
+}
+extension CometChatCallsSDK.CometChatCalls {
+  public static func addCallEventListener(observerId: Swift.String, delegate: any CometChatCallsSDK.CallsEventsDelegate)
+  public static func removeCallEventListener(observerId: Swift.String)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class User : CometChatCallsSDK.AppEntity {
+  @objc public var uid: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var name: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var avatar: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var link: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var role: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var metadata: [Swift.String : Any]? {
+    @objc get
+    @objc set
+  }
+  @objc public var status: CometChatCallsSDK.CometChatCalls.UserStatus {
+    @objc get
+    @objc set
+  }
+  @objc public var statusMessage: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var lastActiveAt: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc public var hasBlockedMe: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var blockedByMe: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var deactivatedAt: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc public var tags: [Swift.String] {
+    @objc get
+    @objc set
+  }
+  @objc public init(uid: Swift.String, name: Swift.String)
+  @objc public func stringValue() -> Swift.String
+  @objc deinit
+}
+extension CometChatCallsSDK.CometChatCalls {
+  public static func print(items: Any..., separator: Swift.String = " ", terminator: Swift.String = "\n")
+}
+@objc public class CallAudioMode : ObjectiveC.NSObject {
+  public var mode: Swift.String
+  public var isSelected: Swift.Bool
+  @objc public init(mode: Swift.String, isSelected: Swift.Bool = false)
+  @objc deinit
+}
+@objc public class RTCUser : ObjectiveC.NSObject {
+  public var uid: Swift.String
+  public var avatar: Swift.String
+  public var name: Swift.String
+  public var jwt: Swift.String
+  public var resource: Swift.String
+  @objc public init(uid: Swift.String, avatar: Swift.String, name: Swift.String, jwt: Swift.String, resource: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class RTCMutedUser : ObjectiveC.NSObject {
+  public var muted: CometChatCallsSDK.RTCUser
+  public var mutedBy: CometChatCallsSDK.RTCUser
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class RTCRecordingInfo : ObjectiveC.NSObject {
+  public var recordingStarted: Swift.Bool
+  public var user: CometChatCallsSDK.RTCUser
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class CallSwitchRequestInfo : ObjectiveC.NSObject {
+  public var sessionId: Swift.String
+  public var requestInitiatedBy: CometChatCallsSDK.RTCUser
+  public var requestAcceptedBy: CometChatCallsSDK.RTCUser
+  @objc deinit
+}
+public enum AvatarMode {
+  case circle
+  case square
+  case fullscreen
+  public func toString() -> Swift.String
+  public static func == (a: CometChatCallsSDK.AvatarMode, b: CometChatCallsSDK.AvatarMode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum DisplayModes {
+  case `default`
+  case single
+  case spotlight
+  public static func == (a: CometChatCallsSDK.DisplayModes, b: CometChatCallsSDK.DisplayModes) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CallType : Swift.Int, Swift.Codable {
+  case video
+  case voice
+  public var value: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public init(from decoder: any Swift.Decoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CameraFacing : Swift.Int, Swift.Codable {
+  case front
+  case rear
+  public var value: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public init(from decoder: any Swift.Decoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum AudioModeType : Swift.Int, Swift.Codable {
+  case speaker
+  case earpiece
+  case bluetooth
+  case headphones
+  public var value: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public init(from decoder: any Swift.Decoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum LayoutType : Swift.Int, Swift.Codable {
+  case tile
+  case sidebar
+  case spotlight
+  public var value: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public init(from decoder: any Swift.Decoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CallStatus : Swift.Int, Swift.Codable {
+  case ongoing
+  case busy
+  case rejected
+  case cancelled
+  case ended
+  case unanswered
+  case initiated
+  public init?(stringValue: Swift.String)
+  public var value: Swift.String {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CallEntityType : Swift.Int, Swift.Codable {
+  case callUser
+  case callGroup
+  public var value: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public init(from decoder: any Swift.Decoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CallCategory : Swift.Int, Swift.Codable {
+  case call
+  case meet
+  case presenter
+  case broadcast
+  public var value: Swift.String {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CallDirection : Swift.Int, Swift.Codable {
+  case outgoing
+  case incoming
+  public var value: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol MediaEventsListener {
+  @objc optional func onRecordingStarted()
+  @objc optional func onRecordingStopped()
+  @objc optional func onAudioModeChanged(audioModeType: CometChatCallsSDK.AudioModeType)
+  @objc optional func onCameraFacingChanged(cameraFacing: CometChatCallsSDK.CameraFacing)
+  @objc optional func onAudioMuted()
+  @objc optional func onAudioUnMuted()
+  @objc optional func onVideoPaused()
+  @objc optional func onVideoResumed()
+}
+extension CometChatCallsSDK.PiPViewCoordinator.Position : Swift.Equatable {}
+extension CometChatCallsSDK.PiPViewCoordinator.Position : Swift.Hashable {}
+extension CometChatCallsSDK.CometChatCalls.UserStatus : Swift.Equatable {}
+extension CometChatCallsSDK.CometChatCalls.UserStatus : Swift.Hashable {}
+extension CometChatCallsSDK.CometChatCalls.UserStatus : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CallSettings.Id : Swift.Equatable {}
+extension CometChatCallsSDK.CallSettings.Id : Swift.Hashable {}
+extension CometChatCallsSDK.CallSettings.Id : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CallSettings.Position : Swift.Equatable {}
+extension CometChatCallsSDK.CallSettings.Position : Swift.Hashable {}
+extension CometChatCallsSDK.CallSettings.Position : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CallSettings.AspectRatio : Swift.Equatable {}
+extension CometChatCallsSDK.CallSettings.AspectRatio : Swift.Hashable {}
+extension CometChatCallsSDK.CallSettings.AspectRatio : Swift.RawRepresentable {}
+extension CometChatCallsSDK.HTTPMethod : Swift.Equatable {}
+extension CometChatCallsSDK.HTTPMethod : Swift.Hashable {}
+extension CometChatCallsSDK.HTTPMethod : Swift.RawRepresentable {}
+extension CometChatCallsSDK.AvatarMode : Swift.Equatable {}
+extension CometChatCallsSDK.AvatarMode : Swift.Hashable {}
+extension CometChatCallsSDK.DisplayModes : Swift.Equatable {}
+extension CometChatCallsSDK.DisplayModes : Swift.Hashable {}
+extension CometChatCallsSDK.CallType : Swift.Equatable {}
+extension CometChatCallsSDK.CallType : Swift.Hashable {}
+extension CometChatCallsSDK.CallType : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CameraFacing : Swift.Equatable {}
+extension CometChatCallsSDK.CameraFacing : Swift.Hashable {}
+extension CometChatCallsSDK.CameraFacing : Swift.RawRepresentable {}
+extension CometChatCallsSDK.AudioModeType : Swift.Equatable {}
+extension CometChatCallsSDK.AudioModeType : Swift.Hashable {}
+extension CometChatCallsSDK.AudioModeType : Swift.RawRepresentable {}
+extension CometChatCallsSDK.LayoutType : Swift.Equatable {}
+extension CometChatCallsSDK.LayoutType : Swift.Hashable {}
+extension CometChatCallsSDK.LayoutType : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CallStatus : Swift.Equatable {}
+extension CometChatCallsSDK.CallStatus : Swift.Hashable {}
+extension CometChatCallsSDK.CallStatus : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CallEntityType : Swift.Equatable {}
+extension CometChatCallsSDK.CallEntityType : Swift.Hashable {}
+extension CometChatCallsSDK.CallEntityType : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CallCategory : Swift.Equatable {}
+extension CometChatCallsSDK.CallCategory : Swift.Hashable {}
+extension CometChatCallsSDK.CallCategory : Swift.RawRepresentable {}
+extension CometChatCallsSDK.CallDirection : Swift.Equatable {}
+extension CometChatCallsSDK.CallDirection : Swift.Hashable {}
+extension CometChatCallsSDK.CallDirection : Swift.RawRepresentable {}
