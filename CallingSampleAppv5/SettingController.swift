@@ -5,6 +5,7 @@ import CometChatCallsSDK
 class SettingController: UIViewController {
 
     var sessionId: String?
+    var meetingName: String?
 
     private let containerView = UIView()
     private let logoImageView = UIImageView()
@@ -90,9 +91,15 @@ class SettingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black
+        initialisationCometChatCalls()
         setupBackButton()
         setupUI()
         setUserAvatar()
+        
+        if let meetingName = meetingName {
+                meetingNameField.text = meetingName
+                meetingNameField.isEnabled = false
+        }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.cancelsTouchesInView = false
@@ -238,6 +245,20 @@ class SettingController: UIViewController {
             joinButton.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -24)
         ])
     }
+    
+    func initialisationCometChatCalls() {
+            let callSettings = CallAppSettingsBuilder()
+                .set(appID: AppConstants.APP_ID)
+                .set(region: AppConstants.REGION)
+                .set(authKey: AppConstants.AUTH_KEY)
+                .build()
+
+            CometChatCalls.init(callsAppSettings: callSettings) { successMessage in
+                print("CometChatCalls Init success with message: \(successMessage)")
+            } onError: { error in
+                print("CometChatCalls Init failed with error: \(error?.errorDescription ?? "")")
+            }
+    }
 
     // MARK: - Video/Audio Logic
 
@@ -359,26 +380,34 @@ class SettingController: UIViewController {
             print(token as Any)
             DispatchQueue.main.async {
                 let callVC = CallViewController()
-                callVC.sessionId = self.meetingNameField.text
+                callVC.sessionId = self.sessionId
+                
+                
                 callVC.modalPresentationStyle = .fullScreen
 
                 // Get title from meetingNameField or fallback
                 let title = (self.meetingNameField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
                 let callTitle = title.isEmpty ? "CometChat Meeting" : title
+                callVC.meetingName = callTitle
                 
+                print("SettingController Setting sessionId: \(self.sessionId ?? "") and meetingName: \(self.meetingName ?? "")")
                 print("Setting " + (self.videoButton.tag == 0 ? "Video is OFF" : "Video is ON"))
                 print("Setting " + (self.audioButton.tag == 0 ? "Audio is OFF" : "Audio is ON"))
 
                 self.present(callVC, animated: true) {
                     self.stopCamera()
                     
-                    let callSettings = CometChatCalls.callSettingsBuilder
+                    // Save to call history
+                    HistoryViewController.saveCallLog(meetingName: callTitle, sessionId: self.sessionId ?? "")
+                    
+                    let sessionSettings = CometChatCalls.sessionSettingsBuilder
                         .setTitle(callTitle)
                         .hideShareInviteButton(false)
                         .startVideoPaused(self.videoButton.tag == 0)
                         .startAudioMuted(self.audioButton.tag == 0)
+                        .hideChatButton(false)
                         .build()
-                    CometChatCalls.joinSession(callToken: token ?? "", callSetting: callSettings, container: callVC.containerView) { success in
+                    CometChatCalls.joinSession(callToken: token ?? "", callSetting: sessionSettings, container: callVC.containerView) { success in
                         print("CometChatCalls JoinSession Success with message: \(success)")
                     } onError: { error in
                         print("CometChatCalls failed with message: " + (error?.errorDescription ?? ""))

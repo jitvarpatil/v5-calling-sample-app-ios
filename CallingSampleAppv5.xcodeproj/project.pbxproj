@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B04307BB3FAA3640059C622 /* Pods_CallingSampleAppv5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC51E4E4FD20205899F26296 /* Pods_CallingSampleAppv5.framework */; };
+		93D2E3286DBC8D2A3C4D515C /* Pods_CallingSampleAppv5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0618D391D887E2FD9600A67C /* Pods_CallingSampleAppv5.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		014D7CC2F34C3088CDF5CAD4 /* Pods-CallingSampleAppv5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallingSampleAppv5.release.xcconfig"; path = "Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5.release.xcconfig"; sourceTree = "<group>"; };
+		0618D391D887E2FD9600A67C /* Pods_CallingSampleAppv5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CallingSampleAppv5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11031F542DFF65E200D15D83 /* CometChatCallsSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = CometChatCallsSDK.xcframework; sourceTree = "<group>"; };
 		11031F5C2DFF69D700D15D83 /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
-		18937E5B2DF99118000AC048 /* CallingSampleAppv5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallingSampleAppv5.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		84380F597E9FBD6987210C01 /* Pods-CallingSampleAppv5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallingSampleAppv5.debug.xcconfig"; path = "Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5.debug.xcconfig"; sourceTree = "<group>"; };
-		AC51E4E4FD20205899F26296 /* Pods_CallingSampleAppv5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CallingSampleAppv5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB819B1C42D1065C399A66B2 /* Pods-CallingSampleAppv5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallingSampleAppv5.release.xcconfig"; path = "Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5.release.xcconfig"; sourceTree = "<group>"; };
+		18937E5B2DF99118000AC048 /* CometChat Calls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CometChat Calls.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23EC0DDDEA1B8AC5086512DF /* Pods-CallingSampleAppv5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallingSampleAppv5.debug.xcconfig"; path = "Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B04307BB3FAA3640059C622 /* Pods_CallingSampleAppv5.framework in Frameworks */,
+				93D2E3286DBC8D2A3C4D515C /* Pods_CallingSampleAppv5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +65,7 @@
 		18937E5C2DF99118000AC048 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18937E5B2DF99118000AC048 /* CallingSampleAppv5.app */,
+				18937E5B2DF99118000AC048 /* CometChat Calls.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,8 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				11031F5C2DFF69D700D15D83 /* WebRTC.xcframework */,
-				AC51E4E4FD20205899F26296 /* Pods_CallingSampleAppv5.framework */,
 				11031F542DFF65E200D15D83 /* CometChatCallsSDK.xcframework */,
+				0618D391D887E2FD9600A67C /* Pods_CallingSampleAppv5.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,8 +83,8 @@
 		DCCBF00BE7A99E177F3829CD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				84380F597E9FBD6987210C01 /* Pods-CallingSampleAppv5.debug.xcconfig */,
-				EB819B1C42D1065C399A66B2 /* Pods-CallingSampleAppv5.release.xcconfig */,
+				23EC0DDDEA1B8AC5086512DF /* Pods-CallingSampleAppv5.debug.xcconfig */,
+				014D7CC2F34C3088CDF5CAD4 /* Pods-CallingSampleAppv5.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -96,11 +96,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18937E6E2DF99123000AC048 /* Build configuration list for PBXNativeTarget "CallingSampleAppv5" */;
 			buildPhases = (
-				833098E5AF349CC46EDD6EB0 /* [CP] Check Pods Manifest.lock */,
+				FD9239A56B7FE45AB7D0DFEC /* [CP] Check Pods Manifest.lock */,
 				18937E572DF99118000AC048 /* Sources */,
 				18937E582DF99118000AC048 /* Frameworks */,
 				18937E592DF99118000AC048 /* Resources */,
-				C8CF0B40619CC6FED5158E5D /* [CP] Embed Pods Frameworks */,
+				1899D4D7F39671CBA9B87296 /* [CP] Embed Pods Frameworks */,
+				11A6F30B2E43D04A000A7F24 /* ShellScript */,
+				12D3408D725F96A722C540DD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -111,7 +113,7 @@
 			);
 			name = CallingSampleAppv5;
 			productName = CallingSampleAppv5;
-			productReference = 18937E5B2DF99118000AC048 /* CallingSampleAppv5.app */;
+			productReference = 18937E5B2DF99118000AC048 /* CometChat Calls.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -159,7 +161,60 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		833098E5AF349CC46EDD6EB0 /* [CP] Check Pods Manifest.lock */ = {
+		11A6F30B2E43D04A000A7F24 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\n${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}",
+				"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		12D3408D725F96A722C540DD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1899D4D7F39671CBA9B87296 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD9239A56B7FE45AB7D0DFEC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,27 +236,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C8CF0B40619CC6FED5158E5D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CallingSampleAppv5/Pods-CallingSampleAppv5-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -217,18 +251,18 @@
 /* Begin XCBuildConfiguration section */
 		18937E6F2DF99123000AC048 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84380F597E9FBD6987210C01 /* Pods-CallingSampleAppv5.debug.xcconfig */;
+			baseConfigurationReference = 23EC0DDDEA1B8AC5086512DF /* Pods-CallingSampleAppv5.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CallingSampleAppv5/CallingSampleAppv5.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = T9F7QDSC2S;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CallingSampleAppv5/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Calling Sample App v5";
+				INFOPLIST_KEY_CFBundleDisplayName = "CometChat Calls";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Participate in meetings with video.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Participate in meetings with voice.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -236,14 +270,15 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0-alpha.1";
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cometchat.connect.call;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CometChat Calls";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -252,18 +287,18 @@
 		};
 		18937E702DF99123000AC048 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB819B1C42D1065C399A66B2 /* Pods-CallingSampleAppv5.release.xcconfig */;
+			baseConfigurationReference = 014D7CC2F34C3088CDF5CAD4 /* Pods-CallingSampleAppv5.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CallingSampleAppv5/CallingSampleAppv5.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = T9F7QDSC2S;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CallingSampleAppv5/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Calling Sample App v5";
+				INFOPLIST_KEY_CFBundleDisplayName = "CometChat Calls";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Participate in meetings with video.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Participate in meetings with voice.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -271,14 +306,15 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0-alpha.1";
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cometchat.connect.call;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CometChat Calls";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

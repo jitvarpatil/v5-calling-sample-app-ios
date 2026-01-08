@@ -4,6 +4,7 @@ import GoogleSignIn
 import FirebaseAuth
 import CryptoKit
 import CometChatCallsSDK
+import CometChatUIKitSwift
 
 class LoginWithGoogleVC: UIViewController {
 
@@ -231,7 +232,7 @@ class LoginWithGoogleVC: UIViewController {
                     }
                     print("Firebase sign-in failed: \(error.localizedDescription)")
                 } else {
-                    let newUser = CometChatCallsSDK.User(uid: authResult?.user.uid ?? "", name: authResult?.user.displayName ?? "")
+                    let newUser = CometChatCallsSDK.CallsSDKUser(uid: authResult?.user.uid ?? "", name: authResult?.user.displayName ?? "")
                     self.loginOnCometChat(with: newUser)
                 }
             }
@@ -256,22 +257,21 @@ class LoginWithGoogleVC: UIViewController {
                 print("No user returned from anonymous sign-in.")
                 return
             }
-            let newUser = User(uid: user.uid, name: name)
+            let newUser = CometChatCallsSDK.CallsSDKUser(uid: user.uid, name: name)
             self.loginOnCometChat(with: newUser)
         }
     }
 
     // MARK: - CometChat Logic (unchanged)
 
-    func loginOnCometChat(with user: CometChatCallsSDK.User) {
+    func loginOnCometChat(with user: CometChatCallsSDK.CallsSDKUser) {
         let uid = user.uid ?? ""
         let name = user.name ?? ""
         print("Logging in to CometChat with UID: \(uid) and Name: \(name)")
         CometChatCalls.login(UID: uid, authKey: AppConstants.AUTH_KEY) { user in
             DispatchQueue.main.async {
                 self.removeSpinner()
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                sceneDelegate.setRootViewController(UINavigationController(rootViewController: MainTabBarController()))
+                self.navigateAfterLogin()
             }
         } onError: { error in
             print(error.errorDescription)
@@ -290,13 +290,55 @@ class LoginWithGoogleVC: UIViewController {
                 }
             }
         }
+        
+        CometChatUIKit.login(uid: uid) { loginResult in
+            switch loginResult {
+            case .success:
+                debugPrint("CometChat UI Kit login succeeded")
+            case .onError(let error):
+                debugPrint("CometChat UI Kit login failed with error: \(error.description)")
+            @unknown default:
+                break
+            }
+        }
+    }
+    
+    private func navigateAfterLogin() {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        
+        // Check if there's a pending deep link
+        if let pendingSessionId = UserDefaults.standard.string(forKey: "pendingSessionId") {
+            let pendingMeetingName = UserDefaults.standard.string(forKey: "pendingMeetingName")
+            
+            // Set root to tab bar first
+            let tabBarController = CallsAppTabBarController()
+            sceneDelegate.setRootViewController(tabBarController)
+            
+            // Then present SettingController with deep link data
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                let settingController = SettingController()
+                settingController.sessionId = pendingSessionId
+                settingController.meetingName = pendingMeetingName
+                
+                let nav = UINavigationController(rootViewController: settingController)
+                nav.modalPresentationStyle = .fullScreen
+                tabBarController.present(nav, animated: true)
+                
+                // Clean up
+                UserDefaults.standard.removeObject(forKey: "pendingSessionId")
+                UserDefaults.standard.removeObject(forKey: "pendingMeetingName")
+            }
+        } else {
+            // No deep link, just go to home
+            sceneDelegate.setRootViewController(CallsAppTabBarController())
+        }
     }
 
     func createCometChatUser(
         uid: String,
         name: String,
         avatarUrl: String?,
-        completion: @escaping (Result<CometChatCallsSDK.User, Error>) -> Void
+        completion: @escaping (Result<CometChatCallsSDK.CallsSDKUser, Error>) -> Void
     ) {
         let urlString = "https://\(AppConstants.APP_ID).api-\(AppConstants.REGION).cometchat.io/v3/users"
         guard let url = URL(string: urlString) else {
@@ -334,7 +376,7 @@ class LoginWithGoogleVC: UIViewController {
         task.resume()
     }
 
-    func userFromData(_ data: Data) -> CometChatCallsSDK.User? {
+    func userFromData(_ data: Data) -> CometChatCallsSDK.CallsSDKUser? {
         struct APIUser: Codable {
             let uid: String?
             let name: String?
@@ -347,7 +389,7 @@ class LoginWithGoogleVC: UIViewController {
         do {
             let response = try decoder.decode(APIResponse.self, from: data)
             let apiUser = response.data
-            let user = CometChatCallsSDK.User(uid: apiUser.uid ?? "", name: apiUser.name ?? "")
+            let user = CometChatCallsSDK.CallsSDKUser(uid: apiUser.uid ?? "", name: apiUser.name ?? "")
             user.avatar = apiUser.avatar
             return user
         } catch {

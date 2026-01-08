@@ -7,7 +7,15 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.950141434859-25g69sfbot5sset7847pqj21e28iaop6</string>
+				<string>com.googleusercontent.apps.950141434859-382tqqmig0b2kajkh3hqg8f2baipf0lo</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.cometchat.calls</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>cometchat</string>
 			</array>
 		</dict>
 	</array>
@@ -35,5 +43,10 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>voip</string>
+	</array>
 </dict>
 </plist>

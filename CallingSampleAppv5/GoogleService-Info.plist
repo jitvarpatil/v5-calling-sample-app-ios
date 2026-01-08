@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>950141434859-25g69sfbot5sset7847pqj21e28iaop6.apps.googleusercontent.com</string>
+	<string>950141434859-382tqqmig0b2kajkh3hqg8f2baipf0lo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.950141434859-25g69sfbot5sset7847pqj21e28iaop6</string>
+	<string>com.googleusercontent.apps.950141434859-382tqqmig0b2kajkh3hqg8f2baipf0lo</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>950141434859-082r7la3902v8l4627r0fq2gfqcek8t2.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.cometchat.connect.call</string>
+	<string>com.cometchat.calls</string>
 	<key>PROJECT_ID</key>
 	<string>cometchatteammessanger</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:950141434859:ios:01247ffc7683528eee77ae</string>
+	<string>1:950141434859:ios:c42a6a83c3ec9e87ee77ae</string>
 </dict>
 </plist>

@@ -375,13 +375,16 @@ class HomeViewController: UIViewController {
                 callVC.sessionId = self.sessionTextFiled.text
                 callVC.modalPresentationStyle = .fullScreen
                 self.present(callVC, animated: true) {
-                    let callSettings = CometChatCalls.callSettingsBuilder
+                    // Save to call history
+                    HistoryViewController.saveCallLog(meetingName: "CometChat Meeting", sessionId: self.sessionTextFiled.text ?? "")
+                    
+                    let sessionSettings = CometChatCalls.sessionSettingsBuilder
                         .setTitle("CometChat Meeting")
                         .hideShareInviteButton(false)
                         .startVideoPaused(self.videoButton.tag == 0 ? true : false)
                         .startAudioMuted(self.audioButton.tag == 0 ? true : false)
                         .build()
-                    CometChatCalls.joinSession(callToken: token ?? "", callSetting: callSettings, container: callVC.containerView) { success in
+                    CometChatCalls.joinSession(callToken: token ?? "", callSetting: sessionSettings, container: callVC.containerView) { success in
                         print("CometChatCalls JoinSession Success with message: \(success)")
                     } onError: { error in
                         print("CometChatCalls failed with message: " + (error?.errorDescription ?? ""))

@@ -9,5 +9,8 @@ target 'CallingSampleAppv5' do
   pod 'GoogleSignIn'
   pod 'Firebase/Auth'
   pod 'CometChatCallsSDK', '~> 5.0.0-alpha.1'
+  pod 'CometChatUIKitSwift', '5.0.8'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
   
 end
